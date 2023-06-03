@@ -12,7 +12,7 @@ from app.schemas.message import MessageCreate, MessageDB
 from app.schemas.user import UserCreate
 # from app.services import update_user_message_counter
 from app.services.other_services import update_user_message_counter, commit_updates_in_db, update_message_counter_for_message
-
+from sqlalchemy.exc import IntegrityError
 
 router = APIRouter()
 
@@ -37,11 +37,10 @@ async def create_message(
         session
     )
     if user is None:
-        user = UserCreate(username=message.username, message_counter=0)
+        user = UserCreate(username=username)
         user = await user_crud.create(user, session)
-    print(f'Счетчик сообщений юзера 1: {user.message_counter}')
+
     user, session = await update_user_message_counter(user, session)
-    print(f'Счетчик сообщений юзера 2: {user.message_counter}')
     message, session = await update_message_counter_for_message(message, user, session)
     message, user = await commit_updates_in_db(message, user, session)
     messages = await message_crud.get_user_messages_with_limit(session, user)

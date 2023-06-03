@@ -4,26 +4,43 @@ import json
 
 import aiohttp
 
+from random import choice
 
-url = 'http://127.0.0.1:8000/message/'
-payload = {"username": "Vadimka", "text": "aio text"}
+COROUTINE_AMOUNT = 2
+REQUESTS_AMOUNT = 3
+NAMES = [
+    'Vadim',
+    'Malik',
+    'Erik Matiz',
+    'Mark Lutz',
+    'Andrey Pronin',
+    'Kate',
+    'Khristina',
+    'Napoleon',
+    'Egor',
+    'Dmitry',
+]
+
+url = 'http://127.0.0.1:80/message/'
+payload = {"username": 'dummy_name', "text": "Hello world"}
 headers = {'content-type': 'application/json'}
 
 
 async def task(task_id):
     async with aiohttp.ClientSession() as session:
+        name = payload['username'] = choice(NAMES)
+        print(f'выбрали имя: {name}')
         response = await session.post(
             url=url,
             data=json.dumps(payload),
             headers=headers
         )
-        response_html = await response.text()
-        # print(response_html)
     print(f'Задача {task_id} выполнена.')
+    print(f'Код ответа: {response.status}')
 
 
 async def async_execute():
-    tasks = [asyncio.ensure_future(task(i)) for i in range(1, 5)]
+    tasks = [asyncio.ensure_future(task(i)) for i in range(1, REQUESTS_AMOUNT+1)]
     await asyncio.wait(tasks)
 
 
@@ -32,8 +49,8 @@ if __name__ == '__main__':
     print('Асинхронное выполнение кода:')
     start_time = datetime.now()
     
-    # Одна строчка кода заменяет три.
-    asyncio.run(async_execute())
+    for _ in range(COROUTINE_AMOUNT):
+        asyncio.run(async_execute())
 
     end_time = datetime.now()
-    print(f'Итоговое время выполнения: {end_time - start_time} секунд.')  
+    print(f'Итоговое время выполнения: {end_time - start_time} секунд.')

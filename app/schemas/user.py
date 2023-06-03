@@ -21,7 +21,7 @@ from pydantic import BaseModel, Extra, Field
 class UserCreate(BaseModel):
     """Схема создания юзера"""
     username: str
-    message_counter: int
+    message_counter: int = 0
 
     class Config():
         extra = Extra.forbid

@@ -8,8 +8,6 @@ async def update_user_message_counter(
     """Обновляем счетик сообщений в профиле пользователя"""
     user.message_counter += 1
     session.add(user)
-    await session.commit()
-    await session.refresh(user)
     return user, session
 
 
@@ -21,8 +19,6 @@ async def update_message_counter_for_message(
     """Обновляем счетик сообщений пользователя в объекте сообщения"""
     message.message_counter = user.message_counter
     session.add(message)
-    # await session.commit()
-    # await session.refresh(message)
     return message, session
 
 

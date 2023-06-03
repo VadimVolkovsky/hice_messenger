@@ -10,7 +10,9 @@ from pydantic import BaseSettings, EmailStr
 class Settings(BaseSettings):
     app_title: str = 'hice messenger'
     app_description: str = 'Мессенджер для банка'
-    database_url: str = 'sqlite+aiosqlite:///./fastapi.db'
+    # database_url: str = 'sqlite+aiosqlite:///./fastapi.db'
+    # database_url: str = 'postgresql+psycopg2://postgres:1111@localhost/sqlalchemy_tuts'
+    database_url: str = 'postgresql+asyncpg://postgres:postgres@db:5432/hice_database'
     secret: str = 'SECRET'
     first_superuser_email: Optional[EmailStr] = None
     first_superuser_password: Optional[str] = None

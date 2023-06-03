@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - db_volume:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./.env
+    container_name: hice_db
+
+
+  backend:
+    build: .
+    # command: bash -c "alembic upgrade head"
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+    container_name: hice_backend
+
+volumes:
+  db_volume:
