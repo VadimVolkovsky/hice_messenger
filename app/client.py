@@ -7,10 +7,10 @@ import aiohttp
 from random import choice
 
 COROUTINE_AMOUNT = 2
-REQUESTS_AMOUNT = 3
+REQUESTS_AMOUNT = 5
 NAMES = [
-    'Vadim',
-    'Malik',
+    'Vadim Volkovsky',
+    'Minubaev Malik',
     'Erik Matiz',
     'Mark Lutz',
     'Andrey Pronin',

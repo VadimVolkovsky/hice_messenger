@@ -15,7 +15,7 @@ class CRUDUser(CRUDBase):
         user = await session.execute(
             select(User).where(
                 User.username == username
-            ).with_for_update(key_share=True)  #,  # read=True nowait=True
+            ).with_for_update(key_share=True, read=True)  #,  # read=True nowait=True
         )
         return user.scalars().first()
 
