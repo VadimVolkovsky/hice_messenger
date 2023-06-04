@@ -4,17 +4,18 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import get_async_session
 from app.crud.message import message_crud
 from app.crud.user import user_crud
-# from app.models.user import User
 from app.schemas.message import MessageCreate, MessageDB
 from app.schemas.user import UserCreate
-from app.services.other_services import update_user_message_counter, commit_updates_in_db, update_message_counter_for_message
+from app.services.other_services import (commit_updates_in_db,
+                                         update_message_counter_for_message,
+                                         update_user_message_counter)
 
 router = APIRouter()
 
+
 @router.post(
     '/message/',
-    # response_model=MessageDB,
-    # response_model_exclude_none=True
+    response_model=list[MessageDB],
 )
 async def create_message(
     message: MessageCreate,

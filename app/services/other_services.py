@@ -27,6 +27,7 @@ async def commit_updates_in_db(
     user,
     session: AsyncSession
 ):
+    """Коммитим сессию и возвращаем обновленные объекты из БД"""
     await session.commit()
     await session.refresh(message)
     await session.refresh(user)

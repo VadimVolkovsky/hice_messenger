@@ -5,12 +5,10 @@ Revises: 64aefe27d1ae
 Create Date: 2023-06-03 22:30:11.401863
 
 """
-from alembic import op
-import sqlalchemy as sa
-from datetime import date
-from sqlalchemy.sql import table, column
-from sqlalchemy import String, Integer, Date
+from sqlalchemy import Integer, String
+from sqlalchemy.sql import column, table
 
+from alembic import op
 
 # revision identifiers, used by Alembic.
 revision = '6073e1ef2bd6'

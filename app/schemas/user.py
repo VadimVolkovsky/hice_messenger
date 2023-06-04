@@ -1,25 +1,8 @@
-# from fastapi_users import schemas
-
-
-# class UserRead(schemas.BaseUser[int]):
-#     pass
-
-
-# class UserCreate(schemas.BaseUserCreate):
-#     pass
-
-
-# class UserUpdate(schemas.BaseUserUpdate):
-#     pass
-
-from datetime import datetime
-from typing import Optional
-
-from pydantic import BaseModel, Extra, Field
+from pydantic import BaseModel, Extra
 
 
 class UserCreate(BaseModel):
-    """Схема создания юзера"""
+    """Схема создания пользователя"""
     username: str
     message_counter: int = 0
 
@@ -28,6 +11,5 @@ class UserCreate(BaseModel):
 
 
 class UserUpdate(UserCreate):
-    """ """
+    """Схема обновления пользователя"""
     pass
-    

@@ -1,21 +1,22 @@
-# import logging
-# from datetime import datetime
-# from logging.handlers import RotatingFileHandler
-# from pathlib import Path
-from typing import Optional
+import logging
+from logging.handlers import RotatingFileHandler
+from pathlib import Path
 
-from pydantic import BaseSettings, EmailStr
+from pydantic import BaseSettings
+
+BASE_DIR = Path(__file__).parent.parent
+LOGS_DIR = BASE_DIR / 'logs'
+LOG_FILE = LOGS_DIR / 'fastapi_app.log'
+LOG_FORMAT = '"%(asctime)s - [%(levelname)s] - %(message)s"'
+LOG_DATETIME_FORMAT = '%d.%m.%Y %H:%M:%S'
 
 
 class Settings(BaseSettings):
     app_title: str = 'hice messenger'
     app_description: str = 'Мессенджер для банка'
-    # database_url: str = 'sqlite+aiosqlite:///./fastapi.db'
-    # database_url: str = 'postgresql+psycopg2://postgres:1111@localhost/sqlalchemy_tuts'
-    database_url: str = 'postgresql+asyncpg://postgres:postgres@db:5432/hice_database'
+    database_url: str = ('postgresql+asyncpg://postgres:'
+                         'postgres@db:5432/hice_database')
     secret: str = 'SECRET'
-    first_superuser_email: Optional[EmailStr] = None
-    first_superuser_password: Optional[str] = None
 
     class Config:
         env_file = '.env'
@@ -24,16 +25,16 @@ class Settings(BaseSettings):
 settings = Settings()
 
 
-# def configure_logging():
-#     """Описание конфигурации для логирования"""
-#     LOGS_DIR.mkdir(exist_ok=True)
-#     rotating_handler = RotatingFileHandler(
-#         LOG_FILE, maxBytes=10**6, backupCount=5, encoding='utf-8'
-#     )
+def configure_logging():
+    """Описание конфигурации для логирования"""
+    LOGS_DIR.mkdir(exist_ok=True)
+    rotating_handler = RotatingFileHandler(
+        LOG_FILE, maxBytes=10**6, backupCount=5, encoding='utf-8'
+    )
 
-#     logging.basicConfig(
-#         datefmt=DR_FORMAT,
-#         format=LOG_FORMAT,
-#         level=logging.INFO,
-#         handlers=(rotating_handler,)
-#     )
+    logging.basicConfig(
+        datefmt=LOG_DATETIME_FORMAT,
+        format=LOG_FORMAT,
+        level=logging.INFO,
+        handlers=(rotating_handler,)
+    )

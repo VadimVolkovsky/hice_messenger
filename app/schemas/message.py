@@ -1,9 +1,6 @@
 from datetime import datetime
-from typing import Optional
 
-from pydantic import BaseModel, Extra, Field
-
-# from app.core.config import DONATION_FULL_AMOUNT_MIN_VALUE
+from pydantic import BaseModel, Extra
 
 
 class MessageCreate(BaseModel):

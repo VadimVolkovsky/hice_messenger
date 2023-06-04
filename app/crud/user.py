@@ -1,4 +1,4 @@
-from sqlalchemy import and_, select
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.crud.base import CRUDBase
@@ -11,11 +11,11 @@ class CRUDUser(CRUDBase):
         username,
         session: AsyncSession
     ):
-        """ """
+        """Поиск пользователя в БД по полю username"""
         user = await session.execute(
             select(User).where(
                 User.username == username
-            ).with_for_update(key_share=True, read=True)  #,  # read=True nowait=True
+            ).with_for_update(key_share=True)
         )
         return user.scalars().first()
 
