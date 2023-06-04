@@ -16,6 +16,7 @@ git@github.com:VadimVolkovsky/hice_messenger.git
 ```
 docker-compose up --build
 ```
+После успешного разворачивания 3 контейнеров, в базе данных будут автоматически созданы необходимые таблицы и применены миграции.
 
 
 ### Отправка запросов:
@@ -30,6 +31,7 @@ python client_main.py
 ```
 
 **Конфигурация клиента:**
+
 Основные настройки клиента прописаны в файле client_app/config.py
 
 Количество клиентов (корутин):
@@ -61,6 +63,8 @@ http://127.0.0.1:80/redoc
 - FastAPI
 - SQLAlchemy
 - Alembic
+- asyncio
+- PostgreSQL
 
 
 **Автор проекта:**
