@@ -1,22 +1,68 @@
 # hice_messenger
 
 
-для создания БД нужно добавить в env строку
-database_url: str = 'sqlite+aiosqlite:///./fastapi.db'
-либо заливать на гит с готовой базой
+### Описание:
+Проект hice_messanger 
 
 
-Alembic умеет работать с переменными окружения и может прочесть значение DATABASE_URL из .env. Для этого нужно добавить несколько строк в файл alembic/env.py.
- внесите изменения в свой файл alembic/env.py:
+### Инструкция по запуску:
+**Клонируйте репозиторий:**
+```
+git@github.com:VadimVolkovsky/hice_messenger.git
+```
 
- # Загрузим файл .env в переменные окружения.
-# Библиотека python-dotenv умеет находить файл в «вышестоящих» каталогах,
-# поэтому полный путь указывать не обязательно.
-load_dotenv('.env')
+**Установите и активируйте виртуальное окружение:**
+для MacOS:
+```
+py -3.9 -m venv venv
+```
 
-# this is the Alembic Config object, which provides
-# access to the values within the .ini file in use.
-config = context.config
+для Windows:
+```
+py -3.9 -m venv venv
+source venv/bin/activate
+source venv/Scripts/activate
+```
+**Из корневой директории выполните запуск контейнеров:**
+```
+docker-compose up --build
+```
 
-# Установим для переменной sqlalchemy.url значение из нашего .env файла.
-config.set_main_option('sqlalchemy.url', os.environ['DATABASE_URL'])
+
+### Отправка запросов:
+Перейдите в папку с клиентом:
+```
+cd client_app
+```
+
+Выполните команду:
+```
+python client_main.py
+```
+
+**Настройка конфигурации запросов:**
+Основные настройки клиента прописаны в файле client_app/config.py
+
+### Документация приложения:
+- Swagger
+```
+http://127.0.0.1:80/docs
+```
+
+- Redoc
+```
+http://127.0.0.1:80/redoc
+```
+
+
+
+### Технологии:
+- Python 3.9
+- FastAPI
+- SQLAlchemy
+- Alembic
+
+
+**Автор проекта:**
+
+Vadim Volkovsky
