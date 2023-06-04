@@ -44,6 +44,13 @@ COROUTINE_AMOUNT = 50
 REQUESTS_AMOUNT = 100
 ```
 
+Доступные адреса для запросов:
+```
+URLS = [
+    'http://127.0.0.1:80/message/',
+    'http://127.0.0.1:81/message/'
+]
+```
 
 ### Документация приложения:
 - Swagger
