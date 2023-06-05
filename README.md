@@ -12,7 +12,12 @@
 git@github.com:VadimVolkovsky/hice_messenger.git
 ```
 
-**В корневой директории проекта создайте файл .env и заполните его по образцу ниже:**
+**В корневой директории проекта создайте файл .env:**
+```
+touch .env
+```
+
+**Заполните файл .env по образцу ниже:**
 ```
 APP_TITLE=hice messenger
 APP_DESCRIPTION=Мессенджер для банка
