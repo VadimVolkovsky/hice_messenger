@@ -36,5 +36,12 @@ services:
       - ./.env
     container_name: hice_backend_2
 
+  client:
+    build: ./client_app
+    depends_on:
+      - backend_2
+    command: bash -c "cd client_app/ && python client_main.py"
+    container_name: hice_client
+
 volumes:
   db_volume:

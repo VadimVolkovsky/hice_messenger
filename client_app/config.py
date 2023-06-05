@@ -1,7 +1,7 @@
 from pathlib import Path
 
-COROUTINE_AMOUNT = 10
-REQUESTS_AMOUNT = 10
+COROUTINE_AMOUNT = 50
+REQUESTS_AMOUNT = 100
 
 NAMES = [
     'Vadim Volkovsky',
@@ -17,8 +17,8 @@ NAMES = [
 ]
 
 URLS = [
-    'http://127.0.0.1:80/message/',
-    'http://127.0.0.1:81/message/'
+    'http://backend_1:80/message/',
+    'http://backend_2:81/message/'
 ]
 
 BASE_DIR = Path(__file__).parent
