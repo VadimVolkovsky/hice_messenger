@@ -11,8 +11,20 @@
 git@github.com:VadimVolkovsky/hice_messenger.git
 ```
 
+**В корневой директории проекта создайте файл .env и заполните его по образцу ниже:**
+```
+APP_TITLE=hice messenger
+APP_DESCRIPTION=Мессенджер для банка
+SECRET = supersecret
+DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/hice_database
+DB_PORT=5432
+DB_NAME=hice_database
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=hice_database
+```
 
-**Из корневой директории выполните запуск контейнеров:**
+**Из корневой директории проекта выполните запуск контейнеров:**
 ```
 docker-compose up --build
 ```
